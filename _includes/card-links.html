@@ -1,0 +1,19 @@
+{% assign types = "pattern principle practice" | split: " " %}
+{% for type in types %}
+
+  <h2>{{type}}s</h2>
+
+  {% if type == "pattern"   %} <em>standards on how to solve common design problems</em> {% endif %}
+  {% if type == "principle" %} <em>guidelines on how to design & implement good software</em> {% endif %}
+  {% if type == "practice"  %} <em>useful tactics for being effective as a developer</em> {% endif %}
+
+  <ul>
+    {% assign pattern_cards = site.cards | where: "type", type %}
+    {% for card in pattern_cards %}
+      {% assign link = '<a href="DEST">' | replace: 'DEST', card.url %}
+      <li>{{ card.summary | replace_first: "**", link | replace_first: "**", "</a>" }}</a></li>
+    {% endfor %}
+  </ul>
+
+{% endfor %}
+
