@@ -131,6 +131,14 @@
       margin-bottom: 1.5rem;
     }
 
+    .card p.listing {
+      margin: 2rem 0 0.5rem 0;
+      color: #aaa;
+    }
+    .card p.listing strong {
+      color: white;
+    }
+
     .card pre {
       overflow-x: scroll;
     }
@@ -159,21 +167,56 @@
     <div class="card title">
       <h1>dashingDev</h1>
       <p class="intro">
-        dashingDev
+        <p>ideas for developing code & yourself</p>
 
-        ideas for developing code & yourself
+        <p style="color: #d0d0d0;">
+          dashingDev is a card deck designed to inspire, improve and remind developers.
+          Each card summarizes a core concept in software development.
+          The deck is for people from all kinds of backgrounds and all levels of skill.
+          The cards are not specific to any technology – they describe the fundamentals of software design & development.
+        </p>
 
-        dashingDev is a card deck designed to inspire, improve and remind developers.
-        Each card summarizes a core concept in software development.
-        The deck is for people from all kinds of backgrounds and all levels of skill.
-        The cards are not specific to any technology – they describe the fundamentals of software design & development.
-
-        <p><strong>Patterns</strong> standards on how to solve common design problems</p>
-        <p>Singleton, Adapter, Facade, Decorator, Observer, State, Template Method, Strategy, Factory Method, Abstract Factory</p>
-        <p><strong>Principles</strong> guidelines on how to design & implement good software</p>
-        <p><a href="#dry">DRY</a>, Optimization, Single Responsibility, High Cohesion, Low Coupling, Encapsulation, Abstraction, Open &amp; Closed, Separation of Concerns, KISS, YAGNI, Dependency Inversion, Convention over Configuration</p>
-        <p><strong>Practices</strong> useful tactics for being effective as a developer</p>
-        <p>Commenting, Code Reviewing, Spiking, Pair Programming, Performance Optimizing, Solution Sketching, Retrospective, Automated Testing, Naming</p>
+        <p class="listing"><strong>Patterns</strong><br>standards on how to solve common design problems</p>
+        <p>
+          <a href="#singleton">Singleton</a>,
+          <a href="#adapter">Adapter</a>,
+          <a href="#facade">Facade</a>,
+          <a href="#decorator">Decorator</a>,
+          <a href="#observer">Observer</a>,
+          <a href="#state">State</a>,
+          <a href="#template-method">Template Method</a>,
+          <a href="#strategy">Strategy</a>,
+          <a href="#factory-method">Factory Method</a>,
+          <a href="#abstract-factory">Abstract Factory</a>
+        </p>
+        <p class="listing"><strong>Principles</strong><br>guidelines on how to design & implement good software</p>
+        <p>
+          <a href="#dry">DRY</a>,
+          <a href="#optimization">Optimization</a>,
+          <a href="#single-responsibility">Single Responsibility</a>,
+          <a href="#high-cohesion">High Cohesion</a>,
+          <a href="#low-coupling">Low Coupling</a>,
+          <a href="#encapsulation">Encapsulation</a>,
+          <a href="#abstraction">Abstraction</a>,
+          <a href="#open-closed">Open & Closed</a>,
+          <a href="#separation-of-concerns">Separation of Concerns</a>,
+          <a href="#kiss">KISS</a>,
+          <a href="#yagni">YAGNI</a>,
+          <a href="#dependency-inversion">Dependency Inversion</a>,
+          <a href="#convention-over-configuration">Convention over Configuration</a>,
+        </p>
+        <p class="listing"><strong>Practices</strong><br>useful tactics for being effective as a developer</p>
+        <p>
+          <a href="#commenting">Commenting</a>,
+          <a href="#code-reviewing">Code Reviewing</a>,
+          <a href="#spiking">Spiking</a>,
+          <a href="#pair-programming">Pair Programming</a>,
+          <a href="#performance-optimizing">Performance Optimizing</a>,
+          <a href="#solution-sketching">Solution Sketching</a>,
+          <a href="#retrospective">Retrospective</a>,
+          <a href="#automated-testing">Automated Testing</a>,
+          <a href="#naming">Naming</a>
+        </p>
       </p>
     </div>
 
@@ -200,15 +243,15 @@ ConfigrationStore.instance.get("password")</pre></code></p>
         <li class="con">makes code harder to test</li>
       </ul>
     </div>
-    <div class="card pattern"><h1>Adapter</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Facade</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Decorator</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Observer</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>State</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Template Method</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Strategy</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Factory Method</h1><div class="content">more...</div></div>
-    <div class="card pattern"><h1>Abstract Factory</h1><div class="content">more...</div></div>
+    <div class="card pattern" id="adapter"><h1>Adapter</h1></div>
+    <div class="card pattern" id="facade"><h1>Facade</h1></div>
+    <div class="card pattern" id="decorator"><h1>Decorator</h1></div>
+    <div class="card pattern" id="observer"><h1>Observer</h1></div>
+    <div class="card pattern" id="state"><h1>State</h1></div>
+    <div class="card pattern" id="template-method"><h1>Template Method</h1></div>
+    <div class="card pattern" id="strategy"><h1>Strategy</h1></div>
+    <div class="card pattern" id="factory-method"><h1>Factory Method</h1></div>
+    <div class="card pattern" id="abstract-factory"><h1>Abstract Factory</h1></div>
 
     <div class="card overview">
       <h1>principles</h1>
@@ -217,32 +260,32 @@ ConfigrationStore.instance.get("password")</pre></code></p>
         <a href="#dry">DRY</a>
       </p>
     </div>
-    <div class="card principle" id="dry"><h1>DRY</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Optimization</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Single Responsibility</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>High Cohesion</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Low Coupling</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Encapsulation</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Abstraction</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Open & Closed</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Separation of Concerns</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>KISS</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>YAGNI</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Dependency Inversion</h1><div class="content">more...</div></div>
-    <div class="card principle"><h1>Convention over Configuration</h1><div class="content">more...</div></div>
+
+
+    <div class="card principle" id="dry"><h1>DRY</h1></div>
+    <div class="card principle" id="optimization"><h1>Optimization</h1></div>
+    <div class="card principle" id="single-responsibility"><h1>Single Responsibility</h1></div>
+    <div class="card principle" id="high-cohesion"><h1>High Cohesion</h1></div>
+    <div class="card principle" id="low-coupling"><h1>Low Coupling</h1></div>
+    <div class="card principle" id="encapsulation"><h1>Encapsulation</h1></div>
+    <div class="card principle" id="abstraction"><h1>Abstraction</h1></div>
+    <div class="card principle" id="open-closed"><h1>Open & Closed</h1></div>
+    <div class="card principle" id="separation-of-concerns"><h1>Separation of Concerns</h1></div>
+    <div class="card principle" id="kiss"><h1>KISS</h1></div>
+    <div class="card principle" id="yagni"><h1>YAGNI</h1></div>
+    <div class="card principle" id="dependency-inversion"><h1>Dependency Inversion</h1></div>
+    <div class="card principle" id="convention-over-configuration"><h1>Convention over Configuration</h1></div>
 
     <div class="card overview"><h1>practices</h1></div>
-    <div class="card practice"><h1>Commenting</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Code Reviewing</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Spiking</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Pair Programming</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Performance Optimizing</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Solution Sketching</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Retrospective</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Automated Testing</h1><div class="content">more...</div></div>
-    <div class="card practice"><h1>Naming</h1><div class="content">more...</div></div>
-  </div>
-
+    <div class="card practice" id="commenting"><h1>Commenting</h1></div>
+    <div class="card practice" id="code-reviewing"><h1>Code Reviewing</h1></div>
+    <div class="card practice" id="spiking"><h1>Spiking</h1></div>
+    <div class="card practice" id="pair-programming"><h1>Pair Programming</h1></div>
+    <div class="card practice" id="performance-optimizing"><h1>Performance Optimizing</h1></div>
+    <div class="card practice" id="solution-sketching"><h1>Solution Sketching</h1></div>
+    <div class="card practice" id="retrospective"><h1>Retrospective</h1></div>
+    <div class="card practice" id="automated-testing"><h1>Automated Testing</h1></div>
+    <div class="card practice" id="naming"><h1>Naming</h1></div>  </div>
   <script>
     // const container = document.querySelector('.container');
     // document.querySelector('body').addEventListener('click', (ev) => { container.classList.toggle('collapsed')})
