@@ -1,31 +1,15 @@
 <!--
   - remove overview & simplify!
-  - style individual card (see ascii sketch below)
-  - color cards
-  - make sure navigation to specific cards works
-
-  asciss sketch
-  mobile:
-   |-------| |-
-   |       | |
-   |       | |
-   |       | |
-   |       | |
-   |-------| |-
-
-   desktop
-   |-------| |-------|
-   |       | |       |
-   |       | |       |
-   |       | |       |
-   |       | |       |
-   |-------| |-------|
+  - add content
+  - add favicon
+  - add links
+  - add last
 
   toc:
   - intro & story
   - patterns + *cards
   - principles + *cards
-  - practicies + *cards
+  - practices + *cards
   - buy as a real set (link to legal)
 -->
 
@@ -36,18 +20,37 @@
   <title>dashingDev</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reseter.css" />
   <style>
+    :root {
+      --neutral: #545454;
+      --neutral-transparent: #54545499;
+      --pattern: #3A606E;
+      --pattern-transparent: #3A606E66;
+      --principle: #4870A1;
+      --principle-transparent: #4870A166;
+      --practice: #652562;
+      --practice-transparent: #65256266;
+      --link: #4B73D7;
+    }
     html {
       margin: 0;
       padding: 0;
       background-color: #262626;
       font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 4.5vw;
       font-weight: 300;
       line-height: 1.3;
       min-height: 100vh;
       color: #ffffff;
+    }
+
+    @media only screen and (max-width: 280px) {
+      html { font-size: 12px; }
+    }
+    @media only screen and (min-width: 450px) {
+      html { font-size: 20px; }
     }
 
     body {
@@ -55,87 +58,141 @@
       padding: 0;
       min-height: 100vh;
       background: radial-gradient(circle at 80% 80%, #3A606E7F, #2626267F);
-      /* TODO: use rem as a unit after defining the fonts */
-      /* TODO: use area names in container (if well supported) */
+      line-height: 1.3;
     }
 
-    h1 {
-      margin: 0;
+    a, a:visited {
+      text-decoration: none;
+      color: var(--link);
+      font-weight: 400;
+    }
+    a:hover:before {
+      content: '\2193';
     }
 
     .container {
       position: absolute;
-      top: 10px;
-      bottom: 10px;
-      left: 10px;
-      right: 10px;
-
+      top: 0;
+      bottom: 0;
+      left: 3vw;
+      right: 3vw;
       overflow: hidden scroll;
-      scroll-snap-type: y mandatory;
+      scroll-snap-type: y proximity;
+      scroll-padding-top: 0.95rem;
+      scroll-behavior: smooth;
     }
 
     .card {
-      background-color: #ffffff33;
-      height: 100%;
+      box-sizing: border-box;
       width: 100%;
       scroll-snap-align: start;
-      transition: all 2s;
-      margin-bottom: 1rem;
+      margin: 1rem auto 1rem auto;
+      max-width: 600px;
 
       border-radius: 1rem;
-      padding: 0.5rem 1rem;
-    }
-    /*
-      .card.principle
-      background: radial-gradient(circle at 20% 30%, #643a6e22, #26262600); !!!use real colors
-    */
+      padding: 1rem 1rem;
 
-    .card.overview {
-      grid-column: 1;
-      background-color: #ffffff11;
+      background-color: var(--neutral);
+      background: radial-gradient(circle at 20% 30%, var(--neutral-transparent), #00000000);
+      border: 2px solid var(--neutral-transparent);
     }
 
-    .collapsed.container {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: .5rem;
-      max-width: 100vh;
-      margin: 0 auto;
+    .card.pattern {
+      background: radial-gradient(circle at 20% 30%, var(--pattern-transparent), #00000000);
+      border-color: var(--pattern-transparent);
+    }
+    .card.principle {
+      background: radial-gradient(circle at 20% 30%, var(--principle-transparent), #00000000);
+      border-color: var(--principle-transparent);
+    }
+    .card.practice {
+      background: radial-gradient(circle at 20% 30%, var(--practice-transparent), #00000000);
+      border-color: var(--practice-transparent);
+    }
 
-      scroll-snap-type: none;
+    .card h1 {
+      font-size: 2rem;
+      margin: 0 0 1.5rem 0;
     }
-    .collapsed .card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .card img {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      width: 60%;
+      max-height: 7.5rem;
     }
-    .collapsed .card.overview {
-      grid-column: 1;
+    .card p {
+      margin-bottom: .7rem;
     }
-    .collapsed .card h1 {
-      font-size: 1rem;
-      text-align: center;
+    .card p strong {
+      font-weight: 500;
     }
-    .collapsed .card .content {
-      display: none;
+
+    .card p.intro {
+      margin-bottom: 1.5rem;
+    }
+
+    .card pre {
+      overflow-x: scroll;
+    }
+    .card code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 300;
+      font-size: 0.8rem;
+    }
+
+    .card ul {
+      margin-top: 2rem;
+      padding-left: 1.5rem;
+    }
+    .card li.pro {
+      list-style-type: "+  ";
+    }
+    .card ul li.con {
+      list-style-type: "–  ";
     }
   </style>
 </head>
 
 <body>
-  <div class="container collapsed">
+  <div class="container">
 
-    <!-- <div class="card overview"><h1>patterns</h1></div> -->
-    <div class="card">
+    <div class="card title">
+      <h1>dashingDev</h1>
+      <p class="intro">
+        dashingDev
+
+        ideas for developing code & yourself
+
+        dashingDev is a card deck designed to inspire, improve and remind developers.
+        Each card summarizes a core concept in software development.
+        The deck is for people from all kinds of backgrounds and all levels of skill.
+        The cards are not specific to any technology – they describe the fundamentals of software design & development.
+
+        <p><strong>Patterns</strong> standards on how to solve common design problems</p>
+        <p>Singleton, Adapter, Facade, Decorator, Observer, State, Template Method, Strategy, Factory Method, Abstract Factory</p>
+        <p><strong>Principles</strong> guidelines on how to design & implement good software</p>
+        <p><a href="#dry">DRY</a>, Optimization, Single Responsibility, High Cohesion, Low Coupling, Encapsulation, Abstraction, Open &amp; Closed, Separation of Concerns, KISS, YAGNI, Dependency Inversion, Convention over Configuration</p>
+        <p><strong>Practices</strong> useful tactics for being effective as a developer</p>
+        <p>Commenting, Code Reviewing, Spiking, Pair Programming, Performance Optimizing, Solution Sketching, Retrospective, Automated Testing, Naming</p>
+      </p>
+    </div>
+
+    <div class="card overview">
+      <h1>patterns</h1>
+      <p class="intro">
+
+      </p>
+    </div>
+
+    <div class="card pattern">
       <h1>Singleton</h1>
       <img src="assets/-singleton.svg">
       <p class="intro"><strong>Singleton</strong> restricts the instantiation of a class to a single instance.</p>
       <p><strong>useful</strong> to provide data that only exists once in the application.</p>
       <p><strong>provide</strong> a static method which returns the sole instance of the class & make the constructor private.</p>
       <p><strong>examples</strong><br><code><pre>
-        Registry.instance.endpoint_for("myservice")
-        ConfigrationStore.instance.get("password")
-      </pre></code></p>
+Registry.instance.endpoint_for("myservice")
+ConfigrationStore.instance.get("password")</pre></code></p>
       <ul class="procon">
         <li class="pro">allows to write a regular class but still have similar behavior as static methods</li>
         <li class="con">introduces global state which hides dependencies</li>
@@ -143,41 +200,47 @@
         <li class="con">makes code harder to test</li>
       </ul>
     </div>
-    <div class="card"><h1>Adapter</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Facade</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Decorator</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Observer</h1><div class="content">more...</div></div>
-    <div class="card"><h1>State</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Template Method</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Strategy</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Factory Method</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Abstract Factory</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Adapter</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Facade</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Decorator</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Observer</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>State</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Template Method</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Strategy</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Factory Method</h1><div class="content">more...</div></div>
+    <div class="card pattern"><h1>Abstract Factory</h1><div class="content">more...</div></div>
 
-    <div class="card overview"><h1>principles</h1></div>
-    <div class="card"><h1>DRY</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Optimization</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Single Responsibility</h1><div class="content">more...</div></div>
-    <div class="card"><h1>High Cohesion</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Low Coupling</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Encapsulation</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Abstraction</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Open & Closed</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Separation of Concerns</h1><div class="content">more...</div></div>
-    <div class="card"><h1>KISS</h1><div class="content">more...</div></div>
-    <div class="card"><h1>YAGNI</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Dependency Inversion</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Convention over Configuration</h1><div class="content">more...</div></div>
+    <div class="card overview">
+      <h1>principles</h1>
+      <p class="intro">
+        here are some cards:
+        <a href="#dry">DRY</a>
+      </p>
+    </div>
+    <div class="card principle" id="dry"><h1>DRY</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Optimization</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Single Responsibility</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>High Cohesion</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Low Coupling</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Encapsulation</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Abstraction</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Open & Closed</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Separation of Concerns</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>KISS</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>YAGNI</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Dependency Inversion</h1><div class="content">more...</div></div>
+    <div class="card principle"><h1>Convention over Configuration</h1><div class="content">more...</div></div>
 
     <div class="card overview"><h1>practices</h1></div>
-    <div class="card"><h1>Commenting</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Code Reviewing</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Spiking</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Pair Programming</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Performance Optimizing</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Solution Sketching</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Retrospective</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Automated Testing</h1><div class="content">more...</div></div>
-    <div class="card"><h1>Naming</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Commenting</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Code Reviewing</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Spiking</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Pair Programming</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Performance Optimizing</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Solution Sketching</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Retrospective</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Automated Testing</h1><div class="content">more...</div></div>
+    <div class="card practice"><h1>Naming</h1><div class="content">more...</div></div>
   </div>
 
   <script>
