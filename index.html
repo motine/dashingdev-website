@@ -4,6 +4,7 @@
   - change color of arrows in images
   - add favicon
   - add video & last
+  - remove end of the video
 
   toc:
   - intro & story
@@ -78,13 +79,14 @@
       right: 0;
       padding: 0 3vw 0 3vw;
       overflow: hidden scroll;
+      min-width: 300px;
       scroll-snap-type: y proximity;
       scroll-padding-top: 0.95rem; /* safari mobile would show a single line on top, so we reduce the padding top */
       scroll-behavior: smooth;
     }
 
     h1.divider {
-      font-size: 2rem;
+      font-size: 1.75rem;
       text-align: center;
       margin: 2rem 0 2rem 0;
       color: #99999950;
@@ -119,7 +121,7 @@
     }
 
     .card h1 {
-      font-size: 2rem;
+      font-size: 1.75rem;
       margin: 0 0 1.5rem 0;
     }
     .card img {
@@ -131,8 +133,13 @@
     .card p {
       margin-bottom: .7rem;
     }
-    .card p strong {
+    .card strong {
       font-weight: 500;
+      color: white;
+    }
+
+    .card .muted {
+      color: #d0d0d0;
     }
 
     .card p.intro {
@@ -142,9 +149,6 @@
     .card p.listing {
       margin: 2rem 0 0.5rem 0;
       color: #aaa;
-    }
-    .card p.listing strong {
-      color: white;
     }
 
     .card pre {
@@ -173,60 +177,60 @@
   <div class="container">
 
     <div class="card title">
-      <h1>dashingDev</h1>
-      <p class="intro">
-        <p>ideas for developing code & yourself</p>
+      <video poster="assets/cover.png" controls style="margin: -1rem -1rem 2rem -1rem; width: calc(100% + 2rem); display: block; border-radius: 1rem 1rem 0 0;">
+        <source src="assets/intro.m4v" type="video/mp4">
+      </video>
 
-        <p style="color: #d0d0d0;">
-          dashingDev is a card deck designed to inspire, improve and remind developers.
-          Each card summarizes a core concept in software development.
-          The deck is for people from all kinds of backgrounds and all levels of skill.
-          The cards are not specific to any technology – they describe the fundamentals of software design & development.
-        </p>
+      <p class="muted">
+        dashingDev is a card deck designed to inspire, improve and remind developers.
+        Each card summarizes a core concept in software development.
+        The deck is for people from all kinds of backgrounds and all levels of skill.
+        The cards are not specific to any technology – they describe the fundamentals of software design & development.
+      </p>
+      <p class="muted">
+        Beginners get inspiration on what to learn next; more advanced developers have the chance to expand their horizons with new concepts and seasoned developers get reminded of facts they once knew.
+      </p>
 
-        <video>TODO</video>
-
-        <p class="listing"><strong>Patterns</strong><br>standards on how to solve common design problems</p>
-        <p>
-          <a href="#singleton">Singleton</a>,
-          <a href="#adapter">Adapter</a>,
-          <a href="#facade">Facade</a>,
-          <a href="#decorator">Decorator</a>,
-          <a href="#observer">Observer</a>,
-          <a href="#state">State</a>,
-          <a href="#template-method">Template Method</a>,
-          <a href="#strategy">Strategy</a>,
-          <a href="#factory-method">Factory Method</a>,
-          <a href="#abstract-factory">Abstract Factory</a>
-        </p>
-        <p class="listing"><strong>Principles</strong><br>guidelines on how to design & implement good software</p>
-        <p>
-          <a href="#dry">DRY</a>,
-          <a href="#optimization">Optimization</a>,
-          <a href="#single-responsibility">Single Responsibility</a>,
-          <a href="#high-cohesion">High Cohesion</a>,
-          <a href="#low-coupling">Low Coupling</a>,
-          <a href="#encapsulation">Encapsulation</a>,
-          <a href="#abstraction">Abstraction</a>,
-          <a href="#open-closed">Open & Closed</a>,
-          <a href="#separation-of-concerns">Separation of Concerns</a>,
-          <a href="#kiss">KISS</a>,
-          <a href="#yagni">YAGNI</a>,
-          <a href="#dependency-inversion">Dependency Inversion</a>,
-          <a href="#convention-over-configuration">Convention over Configuration</a>,
-        </p>
-        <p class="listing"><strong>Practices</strong><br>useful tactics for being effective as a developer</p>
-        <p>
-          <a href="#commenting">Commenting</a>,
-          <a href="#code-reviewing">Code Reviewing</a>,
-          <a href="#spiking">Spiking</a>,
-          <a href="#pair-programming">Pair Programming</a>,
-          <a href="#performance-optimizing">Performance Optimizing</a>,
-          <a href="#solution-sketching">Solution Sketching</a>,
-          <a href="#retrospective">Retrospective</a>,
-          <a href="#automated-testing">Automated Testing</a>,
-          <a href="#naming">Naming</a>
-        </p>
+      <p class="listing"><strong>Patterns</strong><br>standards on how to solve common design problems</p>
+      <p>
+        <a href="#singleton">Singleton</a>,
+        <a href="#adapter">Adapter</a>,
+        <a href="#facade">Facade</a>,
+        <a href="#decorator">Decorator</a>,
+        <a href="#observer">Observer</a>,
+        <a href="#state">State</a>,
+        <a href="#template-method">Template Method</a>,
+        <a href="#strategy">Strategy</a>,
+        <a href="#factory-method">Factory Method</a>,
+        <a href="#abstract-factory">Abstract Factory</a>
+      </p>
+      <p class="listing"><strong>Principles</strong><br>guidelines on how to design & implement good software</p>
+      <p>
+        <a href="#dry">DRY</a>,
+        <a href="#optimization">Optimization</a>,
+        <a href="#single-responsibility">Single Responsibility</a>,
+        <a href="#high-cohesion">High Cohesion</a>,
+        <a href="#low-coupling">Low Coupling</a>,
+        <a href="#encapsulation">Encapsulation</a>,
+        <a href="#abstraction">Abstraction</a>,
+        <a href="#open-closed">Open & Closed</a>,
+        <a href="#separation-of-concerns">Separation of Concerns</a>,
+        <a href="#kiss">KISS</a>,
+        <a href="#yagni">YAGNI</a>,
+        <a href="#dependency-inversion">Dependency Inversion</a>,
+        <a href="#convention-over-configuration">Convention over Configuration</a>,
+      </p>
+      <p class="listing"><strong>Practices</strong><br>useful tactics for being effective as a developer</p>
+      <p>
+        <a href="#commenting">Commenting</a>,
+        <a href="#code-reviewing">Code Reviewing</a>,
+        <a href="#spiking">Spiking</a>,
+        <a href="#pair-programming">Pair Programming</a>,
+        <a href="#performance-optimizing">Performance Optimizing</a>,
+        <a href="#solution-sketching">Solution Sketching</a>,
+        <a href="#retrospective">Retrospective</a>,
+        <a href="#automated-testing">Automated Testing</a>,
+        <a href="#naming">Naming</a>
       </p>
     </div>
 
@@ -257,6 +261,28 @@ ConfigrationStore.instance.get("password")</pre></code></p>
     <div class="card pattern" id="factory-method"><h1>Factory Method</h1></div>
     <div class="card pattern" id="abstract-factory"><h1>Abstract Factory</h1></div>
 
+    <div class="card title" id="dry">
+      <h1>Still not sure what all of this is?</h1>
+      <p style="margin: 0 0 0.5rem 0;">The cards are...</p>
+      <ul style="list-style-type: ' ... '; margin-top: 0;" class="muted">
+        <li>a <strong>tool to brainstorm</strong> and to generate ideas on how to structure your code</li>
+        <li>an <strong>opener for discussions</strong> on how to implement your solution</li>
+        <li>a <strong>helper to get unstuck</strong> by stimulating you with alternatives</li>
+        <li>a <strong>compact reference</strong> of design guidelines</li>
+        <li>a <strong>spark of curiosity</strong> on what to learn next</li>
+        <li>a <strong>reminder</strong> of things you once knew</li>
+        <li><em>pretty damn cool to have on your desk</em></li>
+      </ul>
+      <p style="margin: 2rem 0 0.5rem 0;">Here are <strong>some examples</strong> where the cards come in handy:</p>
+      <ul style="list-style-type: ' ... '; margin-top: 0;" class="muted">
+        <li>spice up a boring meeting by reviewing some cards</li>
+        <li>lean back in your chair and read though a couple of cards to ideate</li>
+        <li>review a pull request with focus on a particular principle</li>
+        <li>bring a card to a coworker as a conversation starter</li>
+      </ul>
+    </p>
+    </div>
+
     <h1 class="divider">principles</h1>
     <div class="card principle" id="dry"><h1>DRY</h1></div>
     <div class="card principle" id="optimization"><h1>Optimization</h1></div>
@@ -285,11 +311,27 @@ ConfigrationStore.instance.get("password")</pre></code></p>
 
     <h1 class="divider">more</h1>
     <div class="card title">
-      <h1>did you like it</h1>
-      <p class="intro">
-        buy the deck...
+      <h1>Did you like it?</h1>
+      <p class="muted">Thanks for browsing through the content! I had a blast preparing the cards and it would be awesome if it would be helpful to you.</p>
+
+      <p>
+        Also, there is a real world version of the cards. I still have a few decks left over from the successful Kickstarter campain:<br>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SU22C8YH3XE84" target="_blank">Get the printed version</a>
       </p>
+      <p class="muted">
+        Once I receive the confirmation, I will sprint to the mailbox as soon as I can (in the very unlikely case that I run out of decks because thousands of people order the cards, shipping with take a little longer 😁).
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch;">
+        <div><img src="assets/photo-hand-optimize-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
+        <div><img src="assets/photo-floor-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
+        <div><img src="assets/photo-hand-kiss-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
+        <div><video poster="assets/outtakes.png" controls style="display: block; width: 100%;"><source src="assets/outtakes.mov" type="video/mp4"></video></div>
+      </div>
     </div>
+    <p>
+      Questions, feedback, praise and love letters are welcome :) Please contact me via <a href="mailto:dashingdev@tomrothe.de">dashingdev@tomrothe.de</a>.<br>
+      <a href="http://tomrothe.de/thanks.html" style="font-size: 0.5rem" target="_blank">impressum, agb &amp; datenschutz</a>
+    </p>
   </div>
 </body>
 </html>
