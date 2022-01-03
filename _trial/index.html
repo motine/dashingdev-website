@@ -1,9 +1,9 @@
 <!--
   - remove overview & simplify!
   - add content
+  - change color of arrows in images
   - add favicon
-  - add links
-  - add last
+  - add video & last
 
   toc:
   - intro & story
@@ -24,8 +24,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reseter.css" />
   <style>
     :root {
-      --neutral: #545454;
-      --neutral-transparent: #54545499;
+      --neutral: #353535;
+      --neutral-transparent: #35353599;
       --pattern: #3A606E;
       --pattern-transparent: #3A606E66;
       --principle: #4870A1;
@@ -71,15 +71,23 @@
     }
 
     .container {
-      position: absolute;
+      position: fixed;
       top: 0;
       bottom: 0;
-      left: 3vw;
-      right: 3vw;
+      left: 0;
+      right: 0;
+      padding: 0 3vw 0 3vw;
       overflow: hidden scroll;
       scroll-snap-type: y proximity;
-      scroll-padding-top: 0.95rem;
+      scroll-padding-top: 0.95rem; /* safari mobile would show a single line on top, so we reduce the padding top */
       scroll-behavior: smooth;
+    }
+
+    h1.divider {
+      font-size: 2rem;
+      text-align: center;
+      margin: 2rem 0 2rem 0;
+      color: #99999950;
     }
 
     .card {
@@ -176,6 +184,8 @@
           The cards are not specific to any technology – they describe the fundamentals of software design & development.
         </p>
 
+        <video>TODO</video>
+
         <p class="listing"><strong>Patterns</strong><br>standards on how to solve common design problems</p>
         <p>
           <a href="#singleton">Singleton</a>,
@@ -220,13 +230,7 @@
       </p>
     </div>
 
-    <div class="card overview">
-      <h1>patterns</h1>
-      <p class="intro">
-
-      </p>
-    </div>
-
+    <h1 class="divider">patterns</h1>
     <div class="card pattern">
       <h1>Singleton</h1>
       <img src="assets/-singleton.svg">
@@ -253,15 +257,7 @@ ConfigrationStore.instance.get("password")</pre></code></p>
     <div class="card pattern" id="factory-method"><h1>Factory Method</h1></div>
     <div class="card pattern" id="abstract-factory"><h1>Abstract Factory</h1></div>
 
-    <div class="card overview">
-      <h1>principles</h1>
-      <p class="intro">
-        here are some cards:
-        <a href="#dry">DRY</a>
-      </p>
-    </div>
-
-
+    <h1 class="divider">principles</h1>
     <div class="card principle" id="dry"><h1>DRY</h1></div>
     <div class="card principle" id="optimization"><h1>Optimization</h1></div>
     <div class="card principle" id="single-responsibility"><h1>Single Responsibility</h1></div>
@@ -276,7 +272,7 @@ ConfigrationStore.instance.get("password")</pre></code></p>
     <div class="card principle" id="dependency-inversion"><h1>Dependency Inversion</h1></div>
     <div class="card principle" id="convention-over-configuration"><h1>Convention over Configuration</h1></div>
 
-    <div class="card overview"><h1>practices</h1></div>
+    <h1 class="divider">practices</h1>
     <div class="card practice" id="commenting"><h1>Commenting</h1></div>
     <div class="card practice" id="code-reviewing"><h1>Code Reviewing</h1></div>
     <div class="card practice" id="spiking"><h1>Spiking</h1></div>
@@ -285,10 +281,15 @@ ConfigrationStore.instance.get("password")</pre></code></p>
     <div class="card practice" id="solution-sketching"><h1>Solution Sketching</h1></div>
     <div class="card practice" id="retrospective"><h1>Retrospective</h1></div>
     <div class="card practice" id="automated-testing"><h1>Automated Testing</h1></div>
-    <div class="card practice" id="naming"><h1>Naming</h1></div>  </div>
-  <script>
-    // const container = document.querySelector('.container');
-    // document.querySelector('body').addEventListener('click', (ev) => { container.classList.toggle('collapsed')})
-  </script>
+    <div class="card practice" id="naming"><h1>Naming</h1></div>
+
+    <h1 class="divider">more</h1>
+    <div class="card title">
+      <h1>did you like it</h1>
+      <p class="intro">
+        buy the deck...
+      </p>
+    </div>
+  </div>
 </body>
 </html>
