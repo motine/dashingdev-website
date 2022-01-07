@@ -170,6 +170,15 @@
     .card ul li.con {
       list-style-type: "–  ";
     }
+    .card ul li.dont {
+      list-style-type: "❌  ";
+    }
+    .card ul li.do {
+      list-style-type: "✓  ";
+    }
+    .card ul li.caution {
+      list-style-type: "!  ";
+    }
   </style>
 </head>
 
@@ -189,6 +198,10 @@
       </p>
       <p class="muted">
         Beginners get inspiration on what to learn next; more advanced developers have the chance to expand their horizons with new concepts and seasoned developers get reminded of facts they once knew.
+      </p>
+      <p class="muted">
+        dashingDev is neither a comprehensive teaching tool nor a full checklist for validating your design.
+        The dashingDev cards inspire and awaken curiosity.
       </p>
 
       <p class="listing"><strong>Patterns</strong><br>standards on how to solve common design problems</p>
@@ -244,7 +257,7 @@
       <p><strong>examples</strong><br><code><pre>
 Registry.instance.endpoint_for("myservice")
 ConfigrationStore.instance.get("password")</pre></code></p>
-      <ul class="procon">
+      <ul class="list">
         <li class="pro">allows to write a regular class but still have similar behavior as static methods</li>
         <li class="con">introduces global state which hides dependencies</li>
         <li class="con">hard to reason about when many collaborators mutate the same object</li>
@@ -285,10 +298,10 @@ ConfigrationStore.instance.get("password")</pre></code></p>
 
     <h1 class="divider">principles</h1>
     <div class="card principle" id="dry"><h1>DRY</h1></div>
-    <div class="card principle" id="optimization"><h1>Optimization</h1></div>
+    <div class="card principle" id="premature-optimization"><h1>Premature Optimization</h1></div>
     <div class="card principle" id="single-responsibility"><h1>Single Responsibility</h1></div>
     <div class="card principle" id="high-cohesion"><h1>High Cohesion</h1></div>
-    <div class="card principle" id="low-coupling"><h1>Low Coupling</h1></div>
+    <div class="card principle" id="loose-coupling"><h1>Loose Coupling</h1></div>
     <div class="card principle" id="encapsulation"><h1>Encapsulation</h1></div>
     <div class="card principle" id="abstraction"><h1>Abstraction</h1></div>
     <div class="card principle" id="open-closed"><h1>Open & Closed</h1></div>

@@ -1,0 +1,566 @@
+
+<h1>Singleton</h1>
+<img src="assets/-singleton.svg">
+<p class="intro"><strong>Singleton</strong> restricts the instantiation of a class to a single instance.</p>
+<p><strong>useful</strong> to provide data that only exists once in the application.</p>
+<p><strong>provide</strong> a static method which returns the sole instance of the class & make the constructor private.</p>
+<p><strong>examples</strong><br><code><pre>
+Registry.instance.endpoint_for("myservice")
+ConfigrationStore.instance.get("password")</pre></code></p>
+<ul class="list">
+  <li class="pro">allows to write a regular class but still have similar behavior as static methods</li>
+  <li class="con">introduces global state which hides dependencies</li>
+  <li class="con">hard to reason about when many collaborators mutate the same object</li>
+  <li class="con">makes code harder to test"</li>
+</ul>
+
+
+<h1>Adapter</h1>
+<img src="assets/-adapter.svg">
+<p class="intro"><strong>Adapter</strong> provides an alternate interface for a class to align with others.</p>
+<p><strong>useful</strong> to convert a class's interface if it can't be changed directly.</p>
+<p><strong>provide</strong> a class with the required interface while retaining a reference to the adaptee or subclassing it.</p>
+<p><strong>examples</strong><br><code><pre>
+XMLServiceAdapter.new(xml_serv).call(json)
+DatabaseORM.new(connection).all_users</pre></code></p>
+<ul class="list">
+  <li class="caution">adapters change the interface, while decorators extend</li>
+  <li class="pro">allows re-using classes with incompatible interfaces</li>
+  <li class="pro">works without changing the adaptee's code & keeping its interface simple</li>
+  <li class="con">introduces overhead because all requests are forwarded"</li>
+</ul>
+
+
+<h1>Strategy</h1>
+<img src="assets/-strategy.svg">
+<p class="intro"><strong>Strategy</strong> selects between different behaviors at runtime.</p>
+<p><strong>useful</strong> to unify classes that differ only in the characteristics of one algorithm.</p>
+<p><strong>provide</strong> classes for each behavior and call the appropriate class in the context.</p>
+<p><strong>examples</strong><br><code><pre>
+price = total + tax_strategy.calc(total)
+model.serializer_strategy.convert(values)</pre></code></p>
+<ul class="list">
+  <li class="pro">extracts varying behavior into separate classes</li>
+  <li class="pro">grants flexibility by using composition</li>
+  <li class="pro">simplifies extending & changing classes by isolating algorithms</li>
+  <li class="pro">makes needed data explicit by keeping strategies self-contained</li>
+  <li class="caution">the state pattern is very similar, but strategies are completely independent"</li>
+</ul>
+
+
+<h1>Decorator</h1>
+<img src="assets/-decorator.svg">
+<p class="intro"><strong>Decorator</strong> enriches or changes the behavior of an existing class.
+<p><strong>useful</strong> to dynamically add functionality to an existing interface.</p>
+<p><strong>provide</strong> a class that wraps an existing object while delegating all methods to it.</p>
+<p><strong>examples</strong><br><code><pre>
+SubscriberNotificationDecorator.new(blog_post).publish</pre></code></p>
+<ul class="list">
+  <li class="pro">provides a flexible alternative to subclassing for extending functionality</li>
+  <li class="pro">allows to split responsibilities of single class into multiple</li>
+  <li class="con">introduces extra layers to reason about</li>
+  <li class="con">stacks of decorators may require a certain order of instantiation</li>
+  <li class="con">presenters are facades or decorators specific to view-related behavior"</li>
+</ul>
+
+
+<h1>Template Method</h1>
+<img src="assets/-template-method.svg">
+<p class="intro"><strong>Template method</strong> specifies an algorithm without the implementation of its steps.</p>
+<p><strong>useful</strong> to prescribe a sequence of steps.</p>
+<p><strong>provide</strong> a method that calls other methods and implement them in subclasses.</p>
+<p><strong>examples</strong><br><code><pre>
+if (self.can_fish?) {
+  self.drive_to_lake; self.fish(lake)
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">splits large algorithms into steps</li>
+  <li class="pro">removes duplication for common logic</li>
+  <li class="pro">eases development & learning by giving a shared skeleton</li>
+  <li class="pro">allows partial overriding of an algorithm</li>
+  <li class="pro">provides defaults & hooks for steps</li>
+  <li class="pro">avoids repetition of common mistakes</li>
+  <li class="con">tempts to make templates too specific</li>
+  <li class="con">may contain too few extension hooks"</li>
+</ul>
+
+
+<h1>State</h1>
+<img src="assets/-state.svg">
+<p class="intro"><strong>State</strong> changes the behavior of an object depending on its status.</p>
+<p><strong>useful</strong> to group methods which vary based on the same condition.</p>
+<p><strong>provide</strong> classes for each state using a common interface and maintain a reference to the current state object.</p>
+<p><strong>examples</strong><br><code><pre>
+self.current_state.handle_play_pause_button</pre></code></p>
+<ul class="list">
+  <li class="pro">expresses business constraints and transitions explicitly</li>
+  <li class="pro">avoids recurring switch-statements</li>
+  <li class="pro">simplifies reasoning by grouping code</li>
+  <li class="pro">allows callbacks on state changes</li>
+  <li class="con">easily mixes distinct state machines</li>
+  <li class="con">may couple states together</li>
+  <li class="con">often used when a simpler logic works"</li>
+</ul>
+
+
+<h1>Observer</h1>
+<img src="assets/-observer.svg">
+<p class="intro"><strong>Observer</strong> signals changes to others.</p>
+<p><strong>useful</strong> to notify dependent objects about modifications in the subject.</p>
+<p><strong>provide</strong> a registration for callbacks & trigger these when the event occurs.</p>
+<p><strong>examples</strong><br><code><pre>
+input_element.add_change_listener(handler)</pre></code></p>
+<ul class="list">
+  <li class="pro">allows modeling one-to-many dependencies without strong coupling</li>
+  <li class="pro">enables runtime dependencies</li>
+  <li class="pro">subjects can choose to push all information or let the observer pull</li>
+  <li class="pro">facilitates unidirectional flow don't call us, we call you</li>
+  <li class="con">may invoke callbacks in random order or before the transaction concluded</li>
+  <li class="con">may overwhelm observers by calling them too frequently/redundantly"</li>
+</ul>
+
+
+<h1>Facade</h1>
+<img src="assets/-facade.svg">
+<p class="intro"><strong>Facade</strong> provides a simplified interface to a complex sub-system.</p>
+<p><strong>useful</strong> to reduce the effort to interact with other classes and services.</p>
+<p><strong>provide</strong> a single orchestration class with a context-specific interface.</p>
+<p><strong>examples</strong><br><code><pre>
+CloudFacade.start_vm('ubuntu', ports: [80])</pre></code></p>
+<ul class="list">
+  <li class="pro">hides features & kinks that are not relevant for the local domain</li>
+  <li class="pro">reduces the mental burden to understand large sub-systems</li>
+  <li class="pro">can track dependencies and ensure proper initialization and disposal</li>
+  <li class="con">may become a bloated object that fulfills too many responsibilities</li>
+  <li class="caution">service objects are facades which encapsulate a single process"</li>
+</ul>
+
+
+<h1>Factory Method</h1>
+<img src="assets/-factory-method.svg">
+<p class="intro"><strong>Factory method</strong> creates objects without specifying the exact class.</p>
+<p><strong>useful</strong> to stay flexible which concrete class with a given interface to instantiate.</p>
+<p><strong>provide</strong> a method that creates an object and allow to override it.</p>
+<p><strong>examples</strong><br><code><pre>
+def create_configuration_store {
+  return Hash.new
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">allows changing the class hierarchy without adapting code that uses them</li>
+  <li class="pro">reduces duplication creating objects</li>
+  <li class="pro">improves readability by keeping creation logic to a dedicated method</li>
+  <li class="pro">enables and confines complex creation logic (e.g. reuse objects from a pool)</li>
+  <li class="pro">permits to insert mocks for testing"</li>
+</ul>
+
+
+<h1>Abstract Factory</h1>
+<img src="assets/-abstract-factory.svg">
+<p class="intro"><strong>Abstract factory</strong> groups and insulates the creation of related objects.</p>
+<p><strong>useful</strong> to encapsulate knowledge which classes belong together.</p>
+<p><strong>provide</strong> an interchangeable factory object and delegate the creation of objects to it.</p>
+<p><strong>examples</strong><br><code><pre>
+current_os.gui_factory.create_button()</pre></code></p>
+<ul class="list">
+  <li class="pro">allows to add or change a whole set of classes w/o changing the using code</li>
+  <li class="pro">makes it possible to configure concrete implementations at runtime</li>
+  <li class="pro">provides guidance which objects are compatible for use together</li>
+  <li class="pro">improves testability by allowing to inject mock objects</li>
+  <li class="con">may make it harder to debug because of additional classes"</li>
+</ul>
+
+
+<h1>Dependency Inversion</h1>
+<img src="assets/-dependency-inversion.svg">
+<p class="intro"><strong>Dependency Inversion</strong> lets higher-level classes prescribe lower-level interfaces.</p>
+<p><strong>useful</strong> because lower-level classes change more often than higher-level ones.</p>
+<p><strong>avoid</strong> declaring direct dependencies from top to bottom.</p>
+<p><strong>violation</strong><br><code><pre>
+def highlevel_method() {
+  LowLevel.new(1,2,3)
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">encourages reusability of high-level classes by dynamically injecting classes</li>
+  <li class="pro">eases low-level changes by allowing to swap implementations</li>
+  <li class="pro">simplifies code by being able to uniformly work with alternate classes</li>
+  <li class="pro">steers the design process away from low-level details</li>
+  <li class="pro">improves testability</li>
+  <li class="con">adds complexity for generalization"</li>
+</ul>
+
+
+<h1>You Ain't Gonna Need It</h1>
+<img src="assets/-yagni.svg">
+<p class="intro"><strong>YAGNI</strong> delays adding functionality until it is absolutely necessary.</p>
+<p><strong>useful</strong> because upfront planning often fails to project the future accurately.</p>
+<p><strong>avoid</strong> investing into structures that will only pay off later.</p>
+<p><strong>violation</strong><br>
+presumptive features</p>
+<ul class="list">
+  <li class="pro">reduces time and effort spent on functionality that brings no value</li>
+  <li class="pro">shortens time to market by easing analysis, implementation & testing</li>
+  <li class="pro">improves velocity due to reduced scope, complexity & unused code</li>
+  <li class="pro">maximizes the time to learn from (less complex) architectures</li>
+  <li class="pro">keeps the cost of wrong projections to a minimum"</li>
+</ul>
+
+
+<h1>Keep It Simple, Stupid</h1>
+<img src="assets/-kiss.svg">
+<p class="intro"><strong>KISS</strong> implements the solution in the easiest way possible</p>
+<p><strong>useful</strong> because familiarity with the current context fades over time.</p>
+<p><strong>avoid</strong> adding complexity for making it more beautiful.</p>
+<p><strong>violation</strong><br><code><pre>
+additionService.instance.process(1, 2)</pre></code></p>
+<ul class="list">
+  <li class="pro">focusses the solution on the problem at hand</li>
+  <li class="pro">improves readability by reducing the number of concepts to remember</li>
+  <li class="pro">employs well-known patterns to leverage common knowledge</li>
+  <li class="pro">keeps code simple enough that anyone on the team can understand it</li>
+  <li class="con">may be used as an excuse to neglect code health"</li>
+</ul>
+
+
+<h1>Separation of Concerns</h1>
+<img src="assets/-separation-of-concerns.svg">
+<p class="intro"><strong>Separating concerns</strong> focusses classes on one aspect or topic.</p>
+<p><strong>useful</strong> because large classes overwhelm.</p>
+<p><strong>avoid</strong> writing giant methods or classes.</p>
+<p><strong>violation</strong><br><code><pre>
+ui_widget.title = account.balance + transfer.amount</pre></code></p>
+<ul class="list">
+  <li class="pro">simplifies reuse, testing & maintenance by splitting responsibilities</li>
+  <li class="pro">insulates classes from failures by introducing clear boundaries</li>
+  <li class="pro">allows replacing behaviour without the need to understand related classes</li>
+  <li class="pro">lowers cognitive load by isolating topics</li>
+  <li class="pro">focusses attention upon a single aspect</li>
+  <li class="con">may introduce more complexity/code than the separation is worth"</li>
+</ul>
+
+
+<h1>Open & Closed</h1>
+<img src="assets/-open-closed.svg">
+The <p class="intro"><strong>open & closed</strong> principle allows extension without changing existing code.</p>
+<p><strong>useful</strong> because modifying working code introduces risk.</p>
+<p><strong>avoid</strong> remodeling classes in use.</p>
+<p><strong>violation</strong><br>
+global variables</p>
+<ul class="list">
+  <li class="pro">limits scope of changes through early anticipation of possible extensions</li>
+  <li class="pro">allows reuse by designing stable interfaces</li>
+  <li class="pro">improves maintainability & testing by confining work to new classes</li>
+  <li class="pro">reduces bugs by leaving existing code alone</li>
+  <li class="con">requires experience to predict & balance useful abstractions</li>
+  <li class="con">must be broken to introduce unforeseen extensions"</li>
+</ul>
+
+
+<h1>Abstraction</h1>
+<img src="assets/-abstraction.svg">
+<p class="intro"><strong>Abstraction</strong> generalizes a class by reducing it to its essential concept.</p>
+<p><strong>useful</strong> because mental capacity is limited.</p>
+<p><strong>avoid</strong> copying code more than twice.</p>
+<p><strong>violation</strong><br><code><pre>
+teacher.postgres_storage.age += 0.7</pre></code></p>
+<ul class="list">
+  <li class="pro">offers simpler, higher-level classes focussing on their purpose</li>
+  <li class="pro">limits the range of concepts to be aware of</li>
+  <li class="pro">facilitates reuse by making classes universal</li>
+  <li class="pro">hides complexity by removing details</li>
+  <li class="con">tempts to introduce unnecessary complexity</li>
+  <li class="con">may leak concrete implementation details or prevent fixing them"</li>
+</ul>
+
+
+<h1>Convention over Configuration</h1>
+<img src="assets/-convention-over-configuration.svg">
+<p class="intro"><strong>Convention over Configuration</strong> provides structural & configurational defaults.</p>
+<p><strong>useful</strong> because learning a technology's specifics may be overwhelming.</p>
+<p><strong>avoid</strong> explicitly asking for non-essential configuration choices.</p>
+<p><strong>violation</strong><br><code><pre>
+class Sale < DatabaseModel {
+  table_name 'sales'
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">lowers the barrier to learn a new technology or project through common structures</li>
+  <li class="pro">decreases the number of decisions to be made by the developer</li>
+  <li class="pro">retains flexibility because defaults can be overridden</li>
+  <li class="pro">reduces the amount of redundant code</li>
+  <li class="con">leads to adhering to conventions when another approach is more appropriate"</li>
+</ul>
+
+
+<h1>Encapsulation</h1>
+<img src="assets/-encapsulation.svg">
+<p class="intro"><strong>Encapsulation</strong> hides information about the internal representation of an object.</p>
+<p><strong>useful</strong> because implementation strategies are likely to change.</p>
+<p><strong>avoid</strong> direct access to classes' members.</p>
+<p><strong>violation</strong><br><code><pre>
+y = point.coordinates_floats[1]</pre></code></p>
+<ul class="list">
+  <li class="pro">eases use by separating how to use the class from its implementation</li>
+  <li class="pro">reduces complexity by hiding details</li>
+  <li class="pro">protects the class's integrity by controlling access to its fields</li>
+  <li class="pro">encourages testing & reuse by limiting dependencies between components</li>
+  <li class="pro">stabilizes interfaces by limiting them</li>
+  <li class="pro">allows improving implementations without affecting class users"</li>
+</ul>
+
+
+<h1>Loose Coupling</h1>
+<img src="assets/-loose-coupling.svg">
+<p class="intro"><strong>Loose coupling</strong> minimizes the knowledge required to use another class.</p>
+<p><strong>useful</strong> because autonomous components are easier to reuse and cheaper to adapt.</p>
+<p><strong>avoid</strong> large class signatures, accessing internals & bi-directional dependencies.</p>
+<p><strong>violation</strong><br><code><pre>
+def send_letter(user) {
+  address = user.db_row.first_name + ...
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">reduces impact of changes and replacements</li>
+  <li class="pro">facilitates reuse of components by leveraging general interfaces</li>
+  <li class="pro">promotes interchangeability & testability by hiding details</li>
+  <li class="pro">reduces amount of information passed</li>
+  <li class="con">tempts to over-engineer"</li>
+</ul>
+
+
+<h1>High Cohesion</h1>
+<img src="assets/-high-cohesion.svg">
+<p class="intro"><strong>High cohesion</strong> balances module complexity and coupling to group only related functions together.</p>
+<p><strong>useful</strong> because changing overloaded classes is risky.</p>
+<p><strong>avoid</strong> combining methods without unifying purpose or concept.</p>
+<p><strong>violation</strong><br>
+a utility class</p>
+<ul class="list">
+  <li class="pro">reduces module complexity due to its restricted scope</li>
+  <li class="pro">increases maintainability & testability because changes affect smaller classes</li>
+  <li class="pro">improves reusability because modules provide independent building blocks</li>
+  <li class="pro">assesses cohesion types: coincidence (worst), logic, time, procedure, data, sequence, function (best)"</li>
+</ul>
+
+
+<h1>Single Responsibility</h1>
+<img src="assets/-single-responsibility.svg">
+Keeping classes to a <p class="intro"><strong>single responsibility</strong> reduces effort by isolating changes.</p>
+<p><strong>useful</strong> because requirements evolve along different axes.</p>
+<p><strong>avoid</strong> mixing responsibilities that are changed by different individuals/groups.</p>
+<p><strong>violation</strong><br><code><pre>
+employee.calculate_pay
+employee.store_in_db</pre></code></p>
+<ul class="list">
+  <li class="pro">decouples implementations based on what is likely to change together</li>
+  <li class="pro">lowers efforts for building & testing</li>
+  <li class="pro">prevents side-effects concerning other responsibilities during modifications</li>
+  <li class="pro">keeps dependencies to a minimum when re-using classes</li>
+  <li class="con">introduces needless complexity when followed to strictly"</li>
+</ul>
+
+
+<h1>Premature Optimization</h1>
+<img src="assets/-premature-optimization.svg">
+Weighing the benefits of <p class="intro"><strong>optimization</strong> maximizes business value.</p>
+<p><strong>useful</strong> because we only have limited resources for a project.</p>
+<p><strong>avoid</strong> optimization areas of low impact or growth.</p>
+<p><strong>violation</strong><br>
+introduce a cluster deployment when the server is mostly idle.</p>
+<ul class="list">
+  <li class="pro">frees staff to satisfy customer needs</li>
+  <li class="pro">prevents layers of complexity too early</li>
+  <li class="pro">iteratively measuring focuses effort on areas with most impact</li>
+  <li class="con">lack of consideration may lead to fundamental design flaws or performance issues when scaling</li>
+  <li class="con">refactoring for optimization may also improve maintainability"</li>
+</ul>
+
+
+<h1>Don't Repeat Yourself</h1>
+<img src="assets/-dry.svg">
+<p class="intro"><strong>DRY</strong> ensures that every piece of knowledge has a single source of truth.</p>
+<p><strong>useful</strong> because assumptions, requirements and implementations always change.</p>
+<p><strong>avoid</strong> duplication in classes, comments, data schema and configuration.</p>
+<p><strong>violation</strong><br><code><pre>
+class Line {
+  attr_accessor :x1, :y1, :x2, :y2, :length
+}</pre></code></p>
+<ul class="list">
+  <li class="pro">prevents bugs from unknown code dependencies</li>
+  <li class="pro">averts inconsistent data or config</li>
+  <li class="pro">avoids outdated docs & comments</li>
+  <li class="con">introduces indirections making it harder to reason</li>
+</ul>
+
+
+<h1>Code Reviewing</h1>
+<p class="tagline">four eyes see more than two</p>
+<img src="assets/-code-reviewing.svg">
+<p class="intro"><strong>Code reviewing</strong> enables learning, teaching and quality assurance.</p>
+<ul class="list">
+  <li class="do">stay curious & ask questions</li>
+  <li class="do">compliment on good stuff</li>
+  <li class="do">attune to the author's level, be more liberal if necessary</li>
+  <li class="do">validate user requirements</li>
+  <li class="do">checkout & understand the code</li>
+  <li class="do">envision edge cases & try to break it</li>
+  <li class="do">consider security & performance</li>
+  <li class="do">chat in person when it gets rough</li>
+  <li class="dont">nitpick and be perfectionist</li>
+  <li class="dont">let only seniors do reviews</li>
+  <li class="dont">give no pointers to the reviewer</li>
+  <li class="dont">judge solutions</li>
+  <li class="dont">state opinions as absolute truths</li>
+  <li class="dont">boost your ego by roasting the author"</li>
+</ul>
+
+
+<h1>Commenting</h1>
+<p class="tagline">code can only describe the <i>how</i> but not the <i>why</i></p>
+<img src="assets/-commenting.svg">
+<p class="intro"><strong>Commenting</strong> adds valuable information beyond the operations written as code.</p>
+<ul class="list">
+  <li class="do">provide context why choices were made</li>
+  <li class="do">warn others to avoid pitfalls</li>
+  <li class="do">instruct on how to maintain the code</li>
+  <li class="do">provide a learning path</li>
+  <li class="do">refactor comments just like code</li>
+  <li class="do">leave links to research & code sources</li>
+  <li class="dont">state the obvious code's contents</li>
+  <li class="dont">be verbose</li>
+  <li class="dont">mislead with outdated information</li>
+  <li class="dont">comment instead of refactor to clarify</li>
+  <li class="dont">keep chunks of code despite being present in the VCS"</li>
+</ul>
+
+
+<h1>Solution Sketching</h1>
+<p class="tagline">program with comments</p>
+<img src="assets/-solution-sketching.svg">
+<p class="intro"><strong>Solution sketching</strong> enables clear thinking, a deeper understanding of solutions and their trade-offs.</p>
+<ul class="list">
+  <li class="do">write comments about how and why, only then translate them to code</li>
+  <li class="do">create stubs of classes describing each method's steps in plain language</li>
+  <li class="do">break it down from large to small</li>
+  <li class="do">write interfaces as you wish they existed</li>
+  <li class="do">annotate the data flow between lines and methods with an example</li>
+  <li class="do">use a pen for structural problems to allow quick sketching</li>
+  <li class="dont">jump right into the implementation</li>
+  <li class="dont">get lost in technicalities of the language or framework</li>
+  <li class="dont">keep redundant comments"</li>
+</ul>
+
+
+<h1>Automated Testing</h1>
+<p class="tagline">get fast feedback</p>
+<img src="assets/-automated-testing.svg">
+<p class="intro"><strong>Automated testing</strong> objectively assesses the quality of features and prevents bugs.</p>
+<ul class="list">
+  <li class="do">eliminate repetitive, manual testing</li>
+  <li class="do">ensure requirements are met</li>
+  <li class="do">make tests run fast and easily</li>
+  <li class="do">prioritize scope based on risk & importance to the user</li>
+  <li class="do">brainstorm edge cases and assess their likelihood</li>
+  <li class="do">prevent repeating bugs & de-risk refactors by adding regression tests</li>
+  <li class="do">weigh the gain of confidence against the effort to create & maintain</li>
+  <li class="do">use it as development tool – to setup data & speed up trying out all cases</li>
+  <li class="dont">skip manual testing altogether</li>
+  <li class="dont">add trivial tests to be maintained</li>
+  <li class="dont">leave tests unfixed"</li>
+</ul>
+
+
+<h1>Spiking</h1>
+<p class="tagline">play to learn</p>
+<img src="assets/-spiking.svg">
+<p class="intro"><strong>Spiking</strong> reduces uncertainty and allows to gain confidence in a new area.</p>
+technical spikes study and evaluate a new library or technology.
+<ul class="list">
+  <li class="do">work in isolation to remove distractions</li>
+  <li class="do">discover limitations early</li>
+  <li class="do">facilitate or refine estimations</li>
+  <li class="do">document findings for later designs</li>
+  <li class="dont">focus on refactoring</li>
+  <li class="dont">copy the spike as-is</li>
+</ul>
+functional spikes learn about the interaction with a new feature.
+<ul class="list">
+  <li class="do">acquire feedback on requirements</li>
+  <li class="do">discover edge cases</li>
+  <li class="do">align stakeholders by demonstrating</li>
+  <li class="do">de-risk estimations & user acceptance</li>
+  <li class="dont">subtract spike efforts from estimations"</li>
+</ul>
+
+
+<h1>Retrospective</h1>
+<p class="tagline">adapt to thrive</p>
+<img src="assets/-retrospective.svg">
+<p class="intro"><strong>Retrospectives</strong> improve collaboration to raise effectivity, quality and happiness.</p>
+<ul class="list">
+  <li class="do">regularly invite to discuss what to continue and what to change</li>
+  <li class="do">use a private space outside the office</li>
+  <li class="do">don't invite management</li>
+  <li class="do">evolve processes as the context/team changes</li>
+  <li class="do">learn from successes and failures</li>
+  <li class="do">make sure everyone is heard</li>
+  <li class="do">focus on improvement rather than placing blame</li>
+  <li class="do">derive action items from the suggestions and follow up</li>
+  <li class="dont">assume ill-will</li>
+  <li class="dont">take feedback personally</li>
+  <li class="dont">repeat what was said outside the meeting without explicit permission"</li>
+</ul>
+
+
+<h1>Performance Optimizing</h1>
+<p class="tagline">save time for users & servers</p>
+<img src="assets/-performance-optimizing.svg">
+<p class="intro"><strong>Performance optimizing</strong> improves speed & resource consumption to save cost and increase user retention.</p>
+<ul class="list">
+  <li class="do">start with measuring to focus on significant problems</li>
+  <li class="do">consider alternatives that fit the requirements or remove features</li>
+  <li class="do">weigh between faster and simpler code</li>
+  <li class="do">quantify performance cost in money – not in time</li>
+  <li class="do">monitor metrics on production; profile to identify causes; establish benchmarks to compare alternatives</li>
+  <li class="do">feedback metrics during development</li>
+  <li class="dont">apply equal effort to all areas</li>
+  <li class="dont">fix every performance issue</li>
+  <li class="caution">80% of the effect comes from just 20% of the causes"</li>
+</ul>
+
+
+<h1>Pair Programming</h1>
+<p class="tagline">two heads – one screen</p>
+<img src="assets/-pair-programming.svg">
+<p class="intro"><strong>Pair programming</strong> brings teams together, raises design quality and facilitates knowledge exchange.</p>
+<ul class="list">
+  <li class="do">share context & explore requirements</li>
+  <li class="do">gain confidence & enjoy collaboration</li>
+  <li class="do">discuss why the solution works best & elaborate on trade-offs</li>
+  <li class="do">be open and allow pursuit of alternative or even wrong paths</li>
+  <li class="do">change roles often, so both can learn</li>
+  <li class="do">consider potential bugs as observer</li>
+  <li class="do">improve onboarding</li>
+  <li class="dont">dominate the discussion</li>
+  <li class="dont">work in silence</li>
+  <li class="dont">forget to weigh the doubled cost</li>
+  <li class="dont">interrupt sessions due to "more important" things</li>
+</ul>
+
+
+<h1>Naming</h1>
+<p class="tagline">write for reading</p>
+<img src="assets/-naming.svg">
+<p class="intro"><strong>Naming</strong> increases speed to comprehend code and reduces bugs through confusion.</p>
+<ul class="list">
+  <li class="do">leverage names to reveal intent</li>
+  <li class="do">empathize with others</li>
+  <li class="do">reuse established names for concepts</li>
+  <li class="do">be specific & avoid general terms unless they have contextual meaning</li>
+  <li class="do">use longer names for larger scopes</li>
+  <li class="do">include all effects of the method/class</li>
+  <li class="do">establish a single domain terminology</li>
+  <li class="do">apply consistent standards in a project</li>
+  <li class="do">stick to idiomatic case</li>
+  <li class="do">rather encode hints in the name than in comments</li>
+  <li class="dont">reuse names in different scopes</li>
+  <li class="dont">pick names making only sense to you</li>
+  <li class="dont">be funny</li>
+</ul>
