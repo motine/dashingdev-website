@@ -110,6 +110,17 @@
       background-color: var(--practice);
     }
 
+    .card a.share {
+      float: right;
+    }
+    .card a.share img {
+      display: inline-block;
+      width: 1.2rem;
+    }
+    .card a.share:hover:before {
+      content: '';
+    }
+
     .card h1 {
       font-size: 1.75rem;
       margin: 0 0 2.5rem 0;
@@ -872,5 +883,35 @@ class Sale < DatabaseModel {
       </p>
     </div>
   </div>
+
+  <template id="share-template">
+    <a href="https://tomrothe.de/dashingdev/#THEID" class="share"><img src="assets/share.svg"></a>
+  </template>
+  <script>
+    function copyLink(link) {
+      // adapted from from https://stackoverflow.com/a/60292243/4007237
+      if (typeof(navigator.clipboard)=='undefined') {
+          var textArea = document.createElement("textarea");
+          textArea.value = link;
+          textArea.style.position="fixed";  // avoid scrolling to bottom
+          document.body.appendChild(textArea);
+          textArea.focus(); textArea.select();
+          try { alert(document.execCommand('copy') ? 'Link successfully copied to the clipboard. Thanks for sharing!' : 'could not copy :('); }
+          catch (err) { alert('could not copy :(' + err); }
+          document.body.removeChild(textArea);
+      } else {
+        navigator.clipboard.writeText(link).then(function() { alert('Link successfully copied to the clipboard. Thanks for sharing!'); }, function(err) { alert('could not copy :(' + err); });
+      }
+    }
+
+    const template = document.querySelector("#share-template");
+    for (const card of document.querySelectorAll(".card.pattern,.card.principle,.card.practice")) {
+      const contents = template.content.cloneNode(true);
+      const link = contents.querySelector('a')
+      const href = link.href.replace('THEID', card.id);
+      link.addEventListener('click', (ev) => { ev.preventDefault(); copyLink(href); return false; });
+      card.prepend(contents);
+    }
+  </script>
 </body>
 </html>
