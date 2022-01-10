@@ -1,29 +1,22 @@
 # dashingDev Website
 
-```shell
-```
+The source of [tomrothe.de/dashingdev](https://tomrothe.de/dashingdev).
+
+Copyright: Tom Rothe
+
+## Contribute
+
+Please open an issue if there is any trouble.
+Please do not submit pull requests at this time.
 
 ## TODO
 
-- export svg
-- add alt tags
 - add copyright (text & images)
-- style tagline
-- add link to github issue
 - add link to copy the current card (share link)
+- add favicon
+- remove end of the video
 
-<!--
-  - remove overview & simplify!
-  - add content
-  - change color of arrows in images
-  - add favicon
-  - add video & last
-  - remove end of the video
-
-  toc:
-  - intro & story
-  - patterns + *cards
-  - principles + *cards
-  - practices + *cards
-  - buy as a real set (link to legal)
--->
+- blog article
+- send message to kickstarter
+- hackernews
+- peter cooper

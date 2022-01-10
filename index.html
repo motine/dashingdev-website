@@ -7,16 +7,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reseter.css" />
+  <link rel="icon" href="assets/favicon.png" sizes="any">
   <style>
     :root {
       --neutral: #353535;
-      --neutral-transparent: #35353599;
       --pattern: #3A606E;
-      --pattern-transparent: #3A606E66;
-      --principle: #4870A1;
-      --principle-transparent: #4870A166;
-      --practice: #652562;
-      --practice-transparent: #65256266;
+      --principle: #4870A1cc; /* original: #4870A1;*/
+      --practice: #652562cc; /* original: #652562;*/
       --link: #4B73D7;
     }
     html {
@@ -92,36 +89,47 @@
       max-width: 600px;
 
       border-radius: 1rem;
-      padding: 1rem 1rem;
+      padding: 1rem 1.35rem; /* also change the video*/
 
       background-color: var(--neutral);
-      background: radial-gradient(circle at 20% 30%, var(--neutral-transparent), #00000000);
-      border: 2px solid var(--neutral-transparent);
     }
 
+    .card.title {
+      background-color: var(--neutral);
+      background: radial-gradient(circle at 20% 30%, var(--neutral), #222);
+    }
     .card.pattern {
-      background: radial-gradient(circle at 20% 30%, var(--pattern-transparent), #00000000);
-      border-color: var(--pattern-transparent);
+      background-color: var(--pattern);
     }
     .card.principle {
-      background: radial-gradient(circle at 20% 30%, var(--principle-transparent), #00000000);
-      border-color: var(--principle-transparent);
+      background-color: var(--principle);
     }
     .card.practice {
-      background: radial-gradient(circle at 20% 30%, var(--practice-transparent), #00000000);
-      border-color: var(--practice-transparent);
+      background-color: var(--practice);
     }
 
     .card h1 {
       font-size: 1.75rem;
-      margin: 0 0 1.5rem 0;
+      margin: 0 0 2.5rem 0;
     }
+
     .card img {
       display: block;
-      margin: 0 auto 1.5rem auto;
+      margin: 0 auto 2.5rem auto;
       width: 60%;
       max-height: 7.5rem;
     }
+    .card img.bigger {
+      max-height: 10rem;
+    }
+
+    .card.practice .tagline {
+      margin-bottom: 2.5rem;
+      text-align: center;
+      margin-top: -1.75rem;
+      font-size: 85%;
+    }
+
     .card p {
       margin-bottom: .7rem;
     }
@@ -156,6 +164,9 @@
       margin-top: 2rem;
       padding-left: 1.5rem;
     }
+    .card li {
+      margin-bottom: 0.2rem;
+    }
     .card li.pro {
       list-style-type: "+  ";
     }
@@ -169,7 +180,7 @@
       list-style-type: "✓  ";
     }
     .card ul li.caution {
-      list-style-type: "!  ";
+      list-style-type: "!!  ";
     }
   </style>
 </head>
@@ -178,7 +189,7 @@
   <div class="container">
 
     <div class="card title">
-      <video poster="assets/cover.png" controls style="margin: -1rem -1rem 2rem -1rem; width: calc(100% + 2rem); display: block; border-radius: 1rem 1rem 0 0;">
+      <video poster="assets/cover.png" controls style="margin: -1.35rem -1.35rem 2rem -1.35rem; width: calc(100% + 1.35rem + 1.35rem); display: block; border-radius: 1rem 1rem 0 0;">
         <source src="assets/intro.m4v" type="video/mp4">
       </video>
 
@@ -247,8 +258,8 @@
       <p><strong>useful</strong> to provide data that only exists once in the application.</p>
       <p><strong>provide</strong> a static method which returns the sole instance of the class & make the constructor private.</p>
       <p><strong>examples</strong><br><code><pre>
-      Registry.instance.endpoint_for("myservice")
-      ConfigrationStore.instance.get("password")</pre></code></p>
+Registry.instance.endpoint_for("myservice")
+ConfigrationStore.instance.get("password")</pre></code></p>
       <ul class="list">
         <li class="pro">allows to write a regular class but still have similar behavior as static methods</li>
         <li class="con">introduces global state which hides dependencies</li>
@@ -274,7 +285,7 @@ DatabaseORM.new(connection).all_users</pre></code></p>
     </div>
     <div class="card pattern" id="facade">
       <h1>Facade</h1>
-      <img src="assets/-facade.svg" alt="diagram for facade">
+      <img src="assets/-facade.svg" alt="diagram for facade" class="bigger">
       <p class="intro"><strong>Facade</strong> provides a simplified interface to a complex sub-system.</p>
       <p><strong>useful</strong> to reduce the effort to interact with other classes and services.</p>
       <p><strong>provide</strong> a single orchestration class with a context-specific interface.</p>
@@ -306,7 +317,7 @@ SubscriberNotificationDecorator.new(blog_post).publish</pre></code></p>
     </div>
     <div class="card pattern" id="observer">
       <h1>Observer</h1>
-      <img src="assets/-observer.svg" alt="diagram for observer">
+      <img src="assets/-observer.svg" alt="diagram for observer" class="bigger">
       <p class="intro"><strong>Observer</strong> signals changes to others.</p>
       <p><strong>useful</strong> to notify dependent objects about modifications in the subject.</p>
       <p><strong>provide</strong> a registration for callbacks & trigger these when the event occurs.</p>
@@ -362,7 +373,7 @@ if (self.can_fish?) {
     </div>
     <div class="card pattern" id="strategy">
       <h1>Strategy</h1>
-      <img src="assets/-strategy.svg" alt="diagram for strategy">
+      <img src="assets/-strategy.svg" alt="diagram for strategy" class="bigger">
       <p class="intro"><strong>Strategy</strong> selects between different behaviors at runtime.</p>
       <p><strong>useful</strong> to unify classes that differ only in the characteristics of one algorithm.</p>
       <p><strong>provide</strong> classes for each behavior and call the appropriate class in the context.</p>
@@ -412,7 +423,7 @@ current_os.gui_factory.create_button()</pre></code></p>
       </ul>
     </div>
 
-    <div class="card title" id="dry">
+    <div class="card title">
       <h1>Still not sure what all of this is?</h1>
       <p style="margin: 0 0 0.5rem 0;">The cards are...</p>
       <ul style="list-style-type: ' ... '; margin-top: 0;" class="muted">
@@ -437,7 +448,7 @@ current_os.gui_factory.create_button()</pre></code></p>
     <h1 class="divider">principles</h1>
     <div class="card principle" id="dry">
       <h1>Don't Repeat Yourself</h1>
-      <img src="assets/-dry.svg" alt="diagram for dry">
+      <img src="assets/-dry.svg" alt="diagram for dry" class="bigger">
       <p class="intro"><strong>DRY</strong> ensures that every piece of knowledge has a single source of truth.</p>
       <p><strong>useful</strong> because assumptions, requirements and implementations always change.</p>
       <p><strong>avoid</strong> duplication in classes, comments, data schema and configuration.</p>
@@ -455,7 +466,7 @@ class Line {
     <div class="card principle" id="premature-optimization">
       <h1>Premature Optimization</h1>
       <img src="assets/-premature-optimization.svg" alt="diagram for premature-optimization">
-      Weighing the benefits of <p class="intro"><strong>optimization</strong> maximizes business value.</p>
+      <p class="intro">Weighing the benefits of <strong>optimization</strong> maximizes business value.</p>
       <p><strong>useful</strong> because we only have limited resources for a project.</p>
       <p><strong>avoid</strong> optimization areas of low impact or growth.</p>
       <p><strong>violation</strong><br>
@@ -468,10 +479,10 @@ class Line {
         <li class="con">refactoring for optimization may also improve maintainability"</li>
       </ul>
     </div>
-    <div class="card principle" id="single-responsibility">
+    <div class="card principle" id="single-responsibility" class="bigger">
       <h1>Single Responsibility</h1>
       <img src="assets/-single-responsibility.svg" alt="diagram for single-responsibility">
-      Keeping classes to a <p class="intro"><strong>single responsibility</strong> reduces effort by isolating changes.</p>
+      <p class="intro"></p>Keeping classes to a <strong>single responsibility</strong> reduces effort by isolating changes.</p>
       <p><strong>useful</strong> because requirements evolve along different axes.</p>
       <p><strong>avoid</strong> mixing responsibilities that are changed by different individuals/groups.</p>
       <p><strong>violation</strong><br><code><pre>
@@ -520,7 +531,7 @@ def send_letter(user) {
     </div>
     <div class="card principle" id="encapsulation">
       <h1>Encapsulation</h1>
-      <img src="assets/-encapsulation.svg" alt="diagram for encapsulation">
+      <img src="assets/-encapsulation.svg" alt="diagram for encapsulation" class="bigger">
       <p class="intro"><strong>Encapsulation</strong> hides information about the internal representation of an object.</p>
       <p><strong>useful</strong> because implementation strategies are likely to change.</p>
       <p><strong>avoid</strong> direct access to classes' members.</p>
@@ -571,7 +582,7 @@ teacher.postgres_storage.age += 0.7</pre></code></p>
     </div>
     <div class="card principle" id="separation-of-concerns">
       <h1>Separation of Concerns</h1>
-      <img src="assets/-separation-of-concerns.svg" alt="diagram for separation-of-concerns">
+      <img src="assets/-separation-of-concerns.svg" alt="diagram for separation-of-concerns" class="bigger">
       <p class="intro"><strong>Separating concerns</strong> focusses classes on one aspect or topic.</p>
       <p><strong>useful</strong> because large classes overwhelm.</p>
       <p><strong>avoid</strong> writing giant methods or classes.</p>
@@ -620,7 +631,7 @@ additionService.instance.process(1, 2)</pre></code></p>
     </div>
     <div class="card principle" id="dependency-inversion">
       <h1>Dependency Inversion</h1>
-      <img src="assets/-dependency-inversion.svg" alt="diagram for dependency-inversion">
+      <img src="assets/-dependency-inversion.svg" alt="diagram for dependency-inversion" class="bigger">
       <p class="intro"><strong>Dependency Inversion</strong> lets higher-level classes prescribe lower-level interfaces.</p>
       <p><strong>useful</strong> because lower-level classes change more often than higher-level ones.</p>
       <p><strong>avoid</strong> declaring direct dependencies from top to bottom.</p>
@@ -637,16 +648,16 @@ def highlevel_method() {
         <li class="con">adds complexity for generalization"</li>
       </ul>
     </div>
-    <div class="card principle" id="convention-over-configuration">
+    <div class="card principle" id="convention-over-configuration" class="bigger">
       <h1>Convention over Configuration</h1>
-      <img src="assets/-convention-over-configuration.svg" alt="diagram for convention-over-configuration">
+      <img src="assets/-convention-over-configuration.svg" alt="diagram for convention-over-configuration" class="bigger">
       <p class="intro"><strong>Convention over Configuration</strong> provides structural & configurational defaults.</p>
       <p><strong>useful</strong> because learning a technology's specifics may be overwhelming.</p>
       <p><strong>avoid</strong> explicitly asking for non-essential configuration choices.</p>
       <p><strong>violation</strong><br><code><pre>
-      class Sale < DatabaseModel {
-        table_name 'sales'
-      }</pre></code></p>
+class Sale < DatabaseModel {
+  table_name 'sales'
+}</pre></code></p>
       <ul class="list">
         <li class="pro">lowers the barrier to learn a new technology or project through common structures</li>
         <li class="pro">decreases the number of decisions to be made by the developer</li>
@@ -659,8 +670,8 @@ def highlevel_method() {
     <h1 class="divider">practices</h1>
     <div class="card practice" id="commenting">
       <h1>Commenting</h1>
+      <img src="assets/-commenting.svg" alt="diagram for commenting" class="bigger">
       <p class="tagline">code can only describe the <i>how</i> but not the <i>why</i></p>
-      <img src="assets/-commenting.svg" alt="diagram for commenting">
       <p class="intro"><strong>Commenting</strong> adds valuable information beyond the operations written as code.</p>
       <ul class="list">
         <li class="do">provide context why choices were made</li>
@@ -678,8 +689,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="code-reviewing">
       <h1>Code Reviewing</h1>
-      <p class="tagline">four eyes see more than two</p>
       <img src="assets/-code-reviewing.svg" alt="diagram for code-reviewing">
+      <p class="tagline">four eyes see more than two</p>
       <p class="intro"><strong>Code reviewing</strong> enables learning, teaching and quality assurance.</p>
       <ul class="list">
         <li class="do">stay curious & ask questions</li>
@@ -700,11 +711,11 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="spiking">
       <h1>Spiking</h1>
-      <p class="tagline">play to learn</p>
       <img src="assets/-spiking.svg" alt="diagram for spiking">
+      <p class="tagline">play to learn</p>
       <p class="intro"><strong>Spiking</strong> reduces uncertainty and allows to gain confidence in a new area.</p>
-      technical spikes study and evaluate a new library or technology.
-      <ul class="list">
+      <p>technical spikes study and evaluate a new library or technology.</p>
+      <ul class="list" style="margin-top: .5rem;">
         <li class="do">work in isolation to remove distractions</li>
         <li class="do">discover limitations early</li>
         <li class="do">facilitate or refine estimations</li>
@@ -712,8 +723,8 @@ def highlevel_method() {
         <li class="dont">focus on refactoring</li>
         <li class="dont">copy the spike as-is</li>
       </ul>
-      functional spikes learn about the interaction with a new feature.
-      <ul class="list">
+      <p>functional spikes learn about the interaction with a new feature.</p>
+      <ul class="list" style="margin-top: .5rem;">
         <li class="do">acquire feedback on requirements</li>
         <li class="do">discover edge cases</li>
         <li class="do">align stakeholders by demonstrating</li>
@@ -723,8 +734,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="pair-programming">
       <h1>Pair Programming</h1>
+      <img src="assets/-pair-programming.svg" alt="diagram for pair-programming" class="bigger">
       <p class="tagline">two heads – one screen</p>
-      <img src="assets/-pair-programming.svg" alt="diagram for pair-programming">
       <p class="intro"><strong>Pair programming</strong> brings teams together, raises design quality and facilitates knowledge exchange.</p>
       <ul class="list">
         <li class="do">share context & explore requirements</li>
@@ -742,8 +753,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="performance-optimizing">
       <h1>Performance Optimizing</h1>
+      <img src="assets/-performance-optimizing.svg" alt="diagram for performance-optimizing" class="bigger">
       <p class="tagline">save time for users & servers</p>
-      <img src="assets/-performance-optimizing.svg" alt="diagram for performance-optimizing">
       <p class="intro"><strong>Performance optimizing</strong> improves speed & resource consumption to save cost and increase user retention.</p>
       <ul class="list">
         <li class="do">start with measuring to focus on significant problems</li>
@@ -759,8 +770,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="solution-sketching">
       <h1>Solution Sketching</h1>
-      <p class="tagline">program with comments</p>
       <img src="assets/-solution-sketching.svg" alt="diagram for solution-sketching">
+      <p class="tagline">program with comments</p>
       <p class="intro"><strong>Solution sketching</strong> enables clear thinking, a deeper understanding of solutions and their trade-offs.</p>
       <ul class="list">
         <li class="do">write comments about how and why, only then translate them to code</li>
@@ -776,8 +787,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="retrospective">
       <h1>Retrospective</h1>
+      <img src="assets/-retrospective.svg" alt="diagram for retrospective" class="bigger">
       <p class="tagline">adapt to thrive</p>
-      <img src="assets/-retrospective.svg" alt="diagram for retrospective">
       <p class="intro"><strong>Retrospectives</strong> improve collaboration to raise effectivity, quality and happiness.</p>
       <ul class="list">
         <li class="do">regularly invite to discuss what to continue and what to change</li>
@@ -795,8 +806,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="automated-testing">
       <h1>Automated Testing</h1>
-      <p class="tagline">get fast feedback</p>
       <img src="assets/-automated-testing.svg" alt="diagram for automated-testing">
+      <p class="tagline">get fast feedback</p>
       <p class="intro"><strong>Automated testing</strong> objectively assesses the quality of features and prevents bugs.</p>
       <ul class="list">
         <li class="do">eliminate repetitive, manual testing</li>
@@ -814,8 +825,8 @@ def highlevel_method() {
     </div>
     <div class="card practice" id="naming">
       <h1>Naming</h1>
-      <p class="tagline">write for reading</p>
       <img src="assets/-naming.svg" alt="diagram for naming">
+      <p class="tagline">write for reading</p>
       <p class="intro"><strong>Naming</strong> increases speed to comprehend code and reduces bugs through confusion.</p>
       <ul class="list">
         <li class="do">leverage names to reveal intent</li>
@@ -844,19 +855,21 @@ def highlevel_method() {
         <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SU22C8YH3XE84" target="_blank">Get the printed version</a>
       </p>
       <p class="muted">
-        Once I receive the confirmation, I will sprint to the mailbox as soon as I can (in the very unlikely case that I run out of decks because thousands of people order the cards, shipping with take a little longer 😁).
+        Once I receive the confirmation, I will sprint to the mailbox as soon as I can. In the very unlikely case that I run out of decks because thousands of people order the cards, shipping with take a little longer 😁
       </p>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch; margin-bottom: 1.4rem;">
         <div><img src="assets/photo-hand-optimize-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
         <div><img src="assets/photo-floor-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
         <div><img src="assets/photo-hand-kiss-slim.jpg" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
         <div><video poster="assets/outtakes.png" controls style="display: block; width: 100%;"><source src="assets/outtakes.mov" type="video/mp4"></video></div>
       </div>
+      <p class="muted">
+        Questions, feedback, praise and love letters are welcome :) Please contact me via <a href="mailto:dashingdev@tomrothe.de">dashingdev@tomrothe.de</a> or open an issue on <a href="https://github.com/motine/dashingdev-website/issues" target="_blank">GitHub</a>.
+      </p>
+      <p style="font-size: 0.5rem; text-align: right;" class="muted">
+        &copy; 2022 tom rothe; <a href="http://tomrothe.de/thanks.html" target="_blank">impressum, agb &amp; datenschutz</a>
+      </p>
     </div>
-    <p>
-      Questions, feedback, praise and love letters are welcome :) Please contact me via <a href="mailto:dashingdev@tomrothe.de">dashingdev@tomrothe.de</a>.<br>
-      <a href="http://tomrothe.de/thanks.html" style="font-size: 0.5rem" target="_blank">impressum, agb &amp; datenschutz</a>
-    </p>
   </div>
 </body>
 </html>
