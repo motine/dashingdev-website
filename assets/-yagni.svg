@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--Copyright 2021 Tom Rothe-->
 <svg width="100%" height="100%" viewBox="0 0 545 345" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <rect x="0" y="30.286" width="272.061" height="272.404" style="fill:#7d9bbf;"/>
     <path d="M188.133,337.757c4.427,0 7.296,-2.373 7.296,-5.914c0,-2.975 -1.806,-4.746 -5.844,-5.348l-1.7,-0.213c-1.948,-0.318 -2.833,-0.956 -2.833,-2.373c0,-1.381 0.992,-2.302 3.117,-2.302c1.983,0 3.541,0.957 4.498,2.09l2.373,-2.267c-1.665,-1.841 -3.542,-2.939 -6.871,-2.939c-4.038,-0 -6.836,2.089 -6.836,5.666c0,3.4 2.302,5.029 6.057,5.49l1.7,0.212c1.912,0.248 2.62,1.134 2.62,2.302c0,1.559 -1.133,2.48 -3.364,2.48c-2.196,-0 -3.861,-0.992 -5.206,-2.621l-2.48,2.266c1.736,2.161 4.002,3.471 7.473,3.471Z" style="fill:#28424c;fill-rule:nonzero;"/>

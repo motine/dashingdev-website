@@ -11,7 +11,6 @@ Please do not submit pull requests at this time.
 
 ## TODO
 
-- add copyright (text & images)
 - add link to copy the current card (share link)
 - add favicon
 - remove end of the video
