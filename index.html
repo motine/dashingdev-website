@@ -252,7 +252,7 @@ ConfigrationStore.instance.get("password")</pre></code></p>
       <li class="pro">allows to write a regular class but still have similar behavior as static methods</li>
       <li class="con">introduces global state which hides dependencies</li>
       <li class="con">hard to reason about when many collaborators mutate the same object</li>
-      <li class="con">makes code harder to test"</li>
+      <li class="con">makes code harder to test</li>
     </ul>
   </div>
   <div class="card pattern" id="adapter">
@@ -268,7 +268,7 @@ DatabaseORM.new(connection).all_users</pre></code></p>
       <li class="caution">adapters change the interface, while decorators extend</li>
       <li class="pro">allows re-using classes with incompatible interfaces</li>
       <li class="pro">works without changing the adaptee's code & keeping its interface simple</li>
-      <li class="con">introduces overhead because all requests are forwarded"</li>
+      <li class="con">introduces overhead because all requests are forwarded</li>
     </ul>
   </div>
   <div class="card pattern" id="facade">
@@ -284,7 +284,7 @@ CloudFacade.start_vm('ubuntu', ports: [80])</pre></code></p>
       <li class="pro">reduces the mental burden to understand large sub-systems</li>
       <li class="pro">can track dependencies and ensure proper initialization and disposal</li>
       <li class="con">may become a bloated object that fulfills too many responsibilities</li>
-      <li class="caution">service objects are facades which encapsulate a single process"</li>
+      <li class="caution">service objects are facades which encapsulate a single process</li>
     </ul>
   </div>
   <div class="card pattern" id="decorator">
@@ -300,7 +300,7 @@ SubscriberNotificationDecorator.new(blog_post).publish</pre></code></p>
       <li class="pro">allows to split responsibilities of single class into multiple</li>
       <li class="con">introduces extra layers to reason about</li>
       <li class="con">stacks of decorators may require a certain order of instantiation</li>
-      <li class="con">presenters are facades or decorators specific to view-related behavior"</li>
+      <li class="con">presenters are facades or decorators specific to view-related behavior</li>
     </ul>
   </div>
   <div class="card pattern" id="observer">
@@ -317,7 +317,7 @@ input_element.add_change_listener(handler)</pre></code></p>
       <li class="pro">subjects can choose to push all information or let the observer pull</li>
       <li class="pro">facilitates unidirectional flow don't call us, we call you</li>
       <li class="con">may invoke callbacks in random order or before the transaction concluded</li>
-      <li class="con">may overwhelm observers by calling them too frequently/redundantly"</li>
+      <li class="con">may overwhelm observers by calling them too frequently/redundantly</li>
     </ul>
   </div>
   <div class="card pattern" id="state">
@@ -335,7 +335,7 @@ self.current_state.handle_play_pause_button</pre></code></p>
       <li class="pro">allows callbacks on state changes</li>
       <li class="con">easily mixes distinct state machines</li>
       <li class="con">may couple states together</li>
-      <li class="con">often used when a simpler logic works"</li>
+      <li class="con">often used when a simpler logic works</li>
     </ul>
   </div>
   <div class="card pattern" id="template-method">
@@ -356,7 +356,7 @@ self.drive_to_lake; self.fish(lake)
       <li class="pro">provides defaults & hooks for steps</li>
       <li class="pro">avoids repetition of common mistakes</li>
       <li class="con">tempts to make templates too specific</li>
-      <li class="con">may contain too few extension hooks"</li>
+      <li class="con">may contain too few extension hooks</li>
     </ul>
   </div>
   <div class="card pattern" id="strategy">
@@ -373,7 +373,7 @@ model.serializer_strategy.convert(values)</pre></code></p>
       <li class="pro">grants flexibility by using composition</li>
       <li class="pro">simplifies extending & changing classes by isolating algorithms</li>
       <li class="pro">makes needed data explicit by keeping strategies self-contained</li>
-      <li class="caution">the state pattern is very similar, but strategies are completely independent"</li>
+      <li class="caution">the state pattern is very similar, but strategies are completely independent</li>
     </ul>
   </div>
   <div class="card pattern" id="factory-method">
@@ -391,7 +391,7 @@ return Hash.new
       <li class="pro">reduces duplication creating objects</li>
       <li class="pro">improves readability by keeping creation logic to a dedicated method</li>
       <li class="pro">enables and confines complex creation logic (e.g. reuse objects from a pool)</li>
-      <li class="pro">permits to insert mocks for testing"</li>
+      <li class="pro">permits to insert mocks for testing</li>
     </ul>
   </div>
   <div class="card pattern" id="abstract-factory">
@@ -407,7 +407,7 @@ current_os.gui_factory.create_button()</pre></code></p>
       <li class="pro">makes it possible to configure concrete implementations at runtime</li>
       <li class="pro">provides guidance which objects are compatible for use together</li>
       <li class="pro">improves testability by allowing to inject mock objects</li>
-      <li class="con">may make it harder to debug because of additional classes"</li>
+      <li class="con">may make it harder to debug because of additional classes</li>
     </ul>
   </div>
 
@@ -464,7 +464,7 @@ attr_accessor :x1, :y1, :x2, :y2, :length
       <li class="pro">prevents layers of complexity too early</li>
       <li class="pro">iteratively measuring focuses effort on areas with most impact</li>
       <li class="con">lack of consideration may lead to fundamental design flaws or performance issues when scaling</li>
-      <li class="con">refactoring for optimization may also improve maintainability"</li>
+      <li class="con">refactoring for optimization may also improve maintainability</li>
     </ul>
   </div>
   <div class="card principle" id="single-responsibility" class="bigger">
@@ -481,7 +481,7 @@ employee.store_in_db</pre></code></p>
       <li class="pro">lowers efforts for building & testing</li>
       <li class="pro">prevents side-effects concerning other responsibilities during modifications</li>
       <li class="pro">keeps dependencies to a minimum when re-using classes</li>
-      <li class="con">introduces needless complexity when followed to strictly"</li>
+      <li class="con">introduces needless complexity when followed to strictly</li>
     </ul>
   </div>
   <div class="card principle" id="high-cohesion">
@@ -496,7 +496,7 @@ employee.store_in_db</pre></code></p>
       <li class="pro">reduces module complexity due to its restricted scope</li>
       <li class="pro">increases maintainability & testability because changes affect smaller classes</li>
       <li class="pro">improves reusability because modules provide independent building blocks</li>
-      <li class="pro">assesses cohesion types: coincidence (worst), logic, time, procedure, data, sequence, function (best)"</li>
+      <li class="pro">assesses cohesion types: coincidence (worst), logic, time, procedure, data, sequence, function (best)</li>
     </ul>
   </div>
   <div class="card principle" id="loose-coupling">
@@ -514,7 +514,7 @@ address = user.db_row.first_name + ...
       <li class="pro">facilitates reuse of components by leveraging general interfaces</li>
       <li class="pro">promotes interchangeability & testability by hiding details</li>
       <li class="pro">reduces amount of information passed</li>
-      <li class="con">tempts to over-engineer"</li>
+      <li class="con">tempts to over-engineer</li>
     </ul>
   </div>
   <div class="card principle" id="encapsulation">
@@ -531,7 +531,7 @@ y = point.coordinates_floats[1]</pre></code></p>
       <li class="pro">protects the class's integrity by controlling access to its fields</li>
       <li class="pro">encourages testing & reuse by limiting dependencies between components</li>
       <li class="pro">stabilizes interfaces by limiting them</li>
-      <li class="pro">allows improving implementations without affecting class users"</li>
+      <li class="pro">allows improving implementations without affecting class users</li>
     </ul>
   </div>
   <div class="card principle" id="abstraction">
@@ -548,7 +548,7 @@ teacher.postgres_storage.age += 0.7</pre></code></p>
       <li class="pro">facilitates reuse by making classes universal</li>
       <li class="pro">hides complexity by removing details</li>
       <li class="con">tempts to introduce unnecessary complexity</li>
-      <li class="con">may leak concrete implementation details or prevent fixing them"</li>
+      <li class="con">may leak concrete implementation details or prevent fixing them</li>
     </ul>
   </div>
   <div class="card principle" id="open-closed">
@@ -565,7 +565,7 @@ teacher.postgres_storage.age += 0.7</pre></code></p>
       <li class="pro">improves maintainability & testing by confining work to new classes</li>
       <li class="pro">reduces bugs by leaving existing code alone</li>
       <li class="con">requires experience to predict & balance useful abstractions</li>
-      <li class="con">must be broken to introduce unforeseen extensions"</li>
+      <li class="con">must be broken to introduce unforeseen extensions</li>
     </ul>
   </div>
   <div class="card principle" id="separation-of-concerns">
@@ -582,7 +582,7 @@ ui_widget.title = account.balance + transfer.amount</pre></code></p>
       <li class="pro">allows replacing behaviour without the need to understand related classes</li>
       <li class="pro">lowers cognitive load by isolating topics</li>
       <li class="pro">focusses attention upon a single aspect</li>
-      <li class="con">may introduce more complexity/code than the separation is worth"</li>
+      <li class="con">may introduce more complexity/code than the separation is worth</li>
     </ul>
   </div>
   <div class="card principle" id="kiss">
@@ -598,7 +598,7 @@ additionService.instance.process(1, 2)</pre></code></p>
       <li class="pro">improves readability by reducing the number of concepts to remember</li>
       <li class="pro">employs well-known patterns to leverage common knowledge</li>
       <li class="pro">keeps code simple enough that anyone on the team can understand it</li>
-      <li class="con">may be used as an excuse to neglect code health"</li>
+      <li class="con">may be used as an excuse to neglect code health</li>
     </ul>
   </div>
   <div class="card principle" id="yagni">
@@ -614,7 +614,7 @@ additionService.instance.process(1, 2)</pre></code></p>
       <li class="pro">shortens time to market by easing analysis, implementation & testing</li>
       <li class="pro">improves velocity due to reduced scope, complexity & unused code</li>
       <li class="pro">maximizes the time to learn from (less complex) architectures</li>
-      <li class="pro">keeps the cost of wrong projections to a minimum"</li>
+      <li class="pro">keeps the cost of wrong projections to a minimum</li>
     </ul>
   </div>
   <div class="card principle" id="dependency-inversion">
@@ -633,7 +633,7 @@ LowLevel.new(1,2,3)
       <li class="pro">simplifies code by being able to uniformly work with alternate classes</li>
       <li class="pro">steers the design process away from low-level details</li>
       <li class="pro">improves testability</li>
-      <li class="con">adds complexity for generalization"</li>
+      <li class="con">adds complexity for generalization</li>
     </ul>
   </div>
   <div class="card principle" id="convention-over-configuration" class="bigger">
@@ -651,7 +651,7 @@ table_name 'sales'
       <li class="pro">decreases the number of decisions to be made by the developer</li>
       <li class="pro">retains flexibility because defaults can be overridden</li>
       <li class="pro">reduces the amount of redundant code</li>
-      <li class="con">leads to adhering to conventions when another approach is more appropriate"</li>
+      <li class="con">leads to adhering to conventions when another approach is more appropriate</li>
     </ul>
   </div>
 
@@ -672,7 +672,7 @@ table_name 'sales'
       <li class="dont">be verbose</li>
       <li class="dont">mislead with outdated information</li>
       <li class="dont">comment instead of refactor to clarify</li>
-      <li class="dont">keep chunks of code despite being present in the VCS"</li>
+      <li class="dont">keep chunks of code despite being present in the VCS</li>
     </ul>
   </div>
   <div class="card practice" id="code-reviewing">
@@ -694,7 +694,7 @@ table_name 'sales'
       <li class="dont">give no pointers to the reviewer</li>
       <li class="dont">judge solutions</li>
       <li class="dont">state opinions as absolute truths</li>
-      <li class="dont">boost your ego by roasting the author"</li>
+      <li class="dont">boost your ego by roasting the author</li>
     </ul>
   </div>
   <div class="card practice" id="spiking">
@@ -717,7 +717,7 @@ table_name 'sales'
       <li class="do">discover edge cases</li>
       <li class="do">align stakeholders by demonstrating</li>
       <li class="do">de-risk estimations & user acceptance</li>
-      <li class="dont">subtract spike efforts from estimations"</li>
+      <li class="dont">subtract spike efforts from estimations</li>
     </ul>
   </div>
   <div class="card practice" id="pair-programming">
@@ -753,7 +753,7 @@ table_name 'sales'
       <li class="do">feedback metrics during development</li>
       <li class="dont">apply equal effort to all areas</li>
       <li class="dont">fix every performance issue</li>
-      <li class="caution">80% of the effect comes from just 20% of the causes"</li>
+      <li class="caution">80% of the effect comes from just 20% of the causes</li>
     </ul>
   </div>
   <div class="card practice" id="solution-sketching">
@@ -770,7 +770,7 @@ table_name 'sales'
       <li class="do">use a pen for structural problems to allow quick sketching</li>
       <li class="dont">jump right into the implementation</li>
       <li class="dont">get lost in technicalities of the language or framework</li>
-      <li class="dont">keep redundant comments"</li>
+      <li class="dont">keep redundant comments</li>
     </ul>
   </div>
   <div class="card practice" id="retrospective">
@@ -789,7 +789,7 @@ table_name 'sales'
       <li class="do">derive action items from the suggestions and follow up</li>
       <li class="dont">assume ill-will</li>
       <li class="dont">take feedback personally</li>
-      <li class="dont">repeat what was said outside the meeting without explicit permission"</li>
+      <li class="dont">repeat what was said outside the meeting without explicit permission</li>
     </ul>
   </div>
   <div class="card practice" id="automated-testing">
@@ -808,7 +808,7 @@ table_name 'sales'
       <li class="do">use it as development tool – to setup data & speed up trying out all cases</li>
       <li class="dont">skip manual testing altogether</li>
       <li class="dont">add trivial tests to be maintained</li>
-      <li class="dont">leave tests unfixed"</li>
+      <li class="dont">leave tests unfixed</li>
     </ul>
   </div>
   <div class="card practice" id="naming">
